@@ -1,26 +1,15 @@
 package au.id.ajlane.hypermedia.demo;
 
-public class PostSummary {
+import au.id.ajlane.hypermedia.Hypermedia;
+import au.id.ajlane.properties.PropertyOrder;
 
-  private final AuthorSummary author;
-  private final String preview;
-  private final String title;
+@Hypermedia
+@PropertyOrder({"title", "preview", "author"})
+public interface PostSummary
+{
+    public AuthorSummary getAuthor();
 
-  public PostSummary(final String title, final String preview, final AuthorSummary author) {
-    this.title = title;
-    this.preview = preview;
-    this.author = author;
-  }
+    public String getPreview();
 
-  public AuthorSummary getAuthor() {
-    return author;
-  }
-
-  public String getPreview() {
-    return preview;
-  }
-
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle();
 }

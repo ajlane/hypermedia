@@ -4,6 +4,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 @Target(ElementType.PACKAGE)
-public @interface Namespace {
-  public String value();
+public @interface Namespace
+{
+    String value();
 }

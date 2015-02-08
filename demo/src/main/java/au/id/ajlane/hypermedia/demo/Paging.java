@@ -1,57 +1,23 @@
 package au.id.ajlane.hypermedia.demo;
 
-import au.id.ajlane.hypermedia.Expect;
+import au.id.ajlane.hypermedia.Hypermedia;
 import au.id.ajlane.hypermedia.Link;
-import au.id.ajlane.hypermedia.LinkParams;
+import au.id.ajlane.properties.PropertyOrder;
 
-import java.net.URI;
+@Hypermedia
+@PropertyOrder({"page", "maxPages", "previous", "next", "specificPage"})
+public interface Paging<T>
+{
+    int getMaxPages();
 
-public class Paging<T> {
+    @Link
+    T getNext();
 
-  private final int maxPages;
-  private final URI next;
-  private final int page;
-  private final URI previous;
-  private final URI specificPage;
+    int getPage();
 
-  public Paging(
-      final int page,
-      final int maxPages,
-      final URI next,
-      final URI previous,
-      final URI specificPage
-  ) {
-    this.page = page;
-    this.maxPages = maxPages;
-    this.next = next;
-    this.previous = previous;
-    this.specificPage = specificPage;
-  }
+    @Link
+    T getPrevious();
 
-  public int getMaxPages() {
-    return maxPages;
-  }
-
-  @Link
-  @Expect("T")
-  public URI getNext() {
-    return next;
-  }
-
-  public int getPage() {
-    return page;
-  }
-
-  @Link
-  @Expect("T")
-  public URI getPrevious() {
-    return previous;
-  }
-
-  @Link
-  @LinkParams("page")
-  @Expect("T")
-  public URI getSpecificPage() {
-    return specificPage;
-  }
+    @Link
+    T getSpecificPage(int page);
 }

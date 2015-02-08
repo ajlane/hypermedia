@@ -1,64 +1,31 @@
 package au.id.ajlane.hypermedia.demo;
 
 
-import au.id.ajlane.hypermedia.Id;
+import au.id.ajlane.hypermedia.Action;
+import au.id.ajlane.hypermedia.Hypermedia;
 
 import java.util.List;
 
-public class Post {
+@Hypermedia
+public interface Post
+{
+    @Action
+    Post edit(PostEdit edit);
 
-  private final AuthorSummary author;
-  private final Paging<Post> commentPaging;
-  private final List<Comment> comments;
-  private final String content;
-  private final Paging<Post> contentPaging;
-  private final String title;
-  private final String url;
+    AuthorSummary getAuthor();
 
-  public Post(
-      final String url,
-      final String title,
-      final AuthorSummary author,
-      final String content,
-      final List<Comment> comments,
-      final Paging<Post> contentPaging,
-      final Paging<Post> commentPaging
-  ) {
-    this.url = url;
-    this.title = title;
-    this.author = author;
-    this.content = content;
-    this.comments = comments;
-    this.contentPaging = contentPaging;
-    this.commentPaging = commentPaging;
-  }
+    Paging<Post> getCommentPaging();
 
-  public AuthorSummary getAuthor() {
-    return author;
-  }
+    List<Comment> getComments();
 
-  public Paging<Post> getCommentPaging() {
-    return commentPaging;
-  }
+    String getContent();
 
-  public List<Comment> getComments() {
-    return comments;
-  }
+    Paging<Post> getContentPaging();
 
-  public String getContent() {
-    return content;
-  }
+    String getTitle();
 
-  public Paging<Post> getContentPaging() {
-    return contentPaging;
-  }
+    String getUrl();
 
-  public String getTitle() {
-    return title;
-  }
-
-  @Id
-  public String getUrl() {
-    return url;
-  }
+    @Action
+    Post rename(PostRename rename);
 }

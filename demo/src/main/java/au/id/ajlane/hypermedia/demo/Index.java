@@ -1,33 +1,20 @@
 package au.id.ajlane.hypermedia.demo;
 
+import au.id.ajlane.hypermedia.Hypermedia;
+import au.id.ajlane.hypermedia.Id;
+import au.id.ajlane.properties.PropertyOrder;
+
 import java.net.URI;
 import java.util.List;
 
-public class Index {
+@Hypermedia
+@PropertyOrder({"url", "paging", "blogs"})
+public interface Index
+{
+    List<BlogSummary> getBlogs();
 
-  private final List<BlogSummary> blogs;
-  private final Paging<Index> paging;
-  private final URI url;
+    Paging<Index> getPaging();
 
-  public Index(
-      final URI url,
-      final List<BlogSummary> blogs,
-      final Paging<Index> paging
-  ) {
-    this.url = url;
-    this.blogs = blogs;
-    this.paging = paging;
-  }
-
-  public List<BlogSummary> getBlogs() {
-    return blogs;
-  }
-
-  public Paging<Index> getPaging() {
-    return paging;
-  }
-
-  public URI getUrl() {
-    return url;
-  }
+    @Id
+    URI getUrl();
 }

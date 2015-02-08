@@ -1,43 +1,17 @@
 package au.id.ajlane.hypermedia.demo;
 
+import au.id.ajlane.hypermedia.Hypermedia;
+import au.id.ajlane.properties.PropertyOrder;
 
-import au.id.ajlane.hypermedia.Id;
+@Hypermedia
+@PropertyOrder({"url", "title", "paging", "content"})
+public interface UnpublishedPost
+{
+    String getContent();
 
-import java.util.List;
+    Paging<UnpublishedPost> getPaging();
 
-public class UnpublishedPost {
+    String getTitle();
 
-  private final String content;
-  private final Paging<UnpublishedPost> paging;
-  private final String title;
-  private final String url;
-
-  public UnpublishedPost(
-      final String url,
-      final String title,
-      final String content,
-      final Paging<UnpublishedPost> paging
-  ) {
-    this.url = url;
-    this.title = title;
-    this.content = content;
-    this.paging = paging;
-  }
-
-  public String getContent() {
-    return content;
-  }
-
-  public Paging<UnpublishedPost> getPaging() {
-    return paging;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  @Id
-  public String getUrl() {
-    return url;
-  }
+    String getUrl();
 }

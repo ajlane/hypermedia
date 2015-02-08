@@ -1,20 +1,11 @@
 package au.id.ajlane.hypermedia.demo;
 
-public class CommentSummary {
+import au.id.ajlane.hypermedia.Hypermedia;
 
-  private final int count;
-  private final PostSummary post;
+@Hypermedia
+public interface CommentSummary
+{
+    int getCount();
 
-  public CommentSummary(PostSummary post, int count) {
-    this.post = post;
-    this.count = count;
-  }
-
-  public int getCount() {
-    return count;
-  }
-
-  public PostSummary getPost() {
-    return post;
-  }
+    PostSummary getPost();
 }

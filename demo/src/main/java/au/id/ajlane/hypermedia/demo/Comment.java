@@ -1,20 +1,13 @@
 package au.id.ajlane.hypermedia.demo;
 
-public class Comment {
+import au.id.ajlane.hypermedia.Hypermedia;
+import au.id.ajlane.properties.PropertyOrder;
 
-  private final String comment;
-  private final CommenterSummary commenter;
+@Hypermedia
+@PropertyOrder({"comment", "commenter"})
+public interface Comment
+{
+    String getComment();
 
-  public Comment(final CommenterSummary commenter, final String comment) {
-    this.commenter = commenter;
-    this.comment = comment;
-  }
-
-  public String getComment() {
-    return comment;
-  }
-
-  public CommenterSummary getCommenter() {
-    return commenter;
-  }
+    CommenterSummary getCommenter();
 }

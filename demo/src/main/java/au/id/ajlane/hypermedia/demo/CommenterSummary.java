@@ -1,29 +1,17 @@
 package au.id.ajlane.hypermedia.demo;
 
-import au.id.ajlane.hypermedia.Id;
+import au.id.ajlane.hypermedia.Hypermedia;
+import au.id.ajlane.hypermedia.Link;
+import au.id.ajlane.properties.PropertyOrder;
 
-public class CommenterSummary {
+@Hypermedia
+@PropertyOrder({"profile", "name", "commentCount"})
+public interface CommenterSummary
+{
+    public int getCommentCount();
 
-  private final int commentCount;
-  private final String name;
-  private final String url;
+    public String getName();
 
-  public CommenterSummary(final String url, final String name, final int commentCount) {
-    this.url = url;
-    this.name = name;
-    this.commentCount = commentCount;
-  }
-
-  public int getCommentCount() {
-    return commentCount;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  @Id
-  public String getUrl() {
-    return url;
-  }
+    @Link
+    public Commenter getProfile();
 }

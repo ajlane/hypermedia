@@ -1,46 +1,21 @@
 package au.id.ajlane.hypermedia.demo;
 
+import au.id.ajlane.hypermedia.Hypermedia;
+import au.id.ajlane.properties.PropertyOrder;
+
 import java.util.List;
 
-public class Blog {
+@Hypermedia
+@PropertyOrder({"name", "description", "authors", "paging", "posts"})
+public interface Blog
+{
+    List<AuthorSummary> getAuthors();
 
-  private final List<AuthorSummary> authors;
-  private final String description;
-  private final String name;
-  private final Paging<Blog> paging;
-  private final List<PostSummary> posts;
+    String getDescription();
 
-  public Blog(
-      final String name,
-      final String description,
-      final List<AuthorSummary> authors,
-      final List<PostSummary> posts,
-      final Paging<Blog> paging
-  ) {
-    this.name = name;
-    this.description = description;
-    this.authors = authors;
-    this.posts = posts;
-    this.paging = paging;
-  }
+    String getName();
 
-  public List<AuthorSummary> getAuthors() {
-    return authors;
-  }
+    Paging<Blog> getPaging();
 
-  public String getDescription() {
-    return description;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public Paging<Blog> getPaging() {
-    return paging;
-  }
-
-  public List<PostSummary> getPosts() {
-    return posts;
-  }
+    List<PostSummary> getPosts();
 }
